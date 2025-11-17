@@ -1,4 +1,6 @@
 // The file that all your CSS is located.
+@use "variables/dms";
+@use "components/dms-icon";
 
 #app-mount .container__2637a {
 	background: var(--theme-variable);

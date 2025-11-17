@@ -2,7 +2,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "bd-scss dev",
-		"build": "bd-scss build"
+		"build": "bd-scss build && cp ./dist/Tokyo-Material.css ~/.config/vesktop/themes"
 	},
 	"dependencies": {
 		"bd-scss": "^2.0.14"
