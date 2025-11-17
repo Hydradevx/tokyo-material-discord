@@ -5,28 +5,40 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  
+
 jobs:
   build:
-    name: 'Build CSS'
-    runs-on: 'ubuntu-latest'
+    runs-on: ubuntu-latest
+
     steps:
-      - name: 'Checkout Repo'
-        uses: 'actions/checkout@v2'
-      - name: 'Setup NodeJS'
-        uses: 'actions/setup-node@v1'
+      - name: Checkout repo
+        uses: actions/checkout@v4
         with:
-          node-version: 16
-      - name: 'Install PNPM'
-        uses: 'pnpm/action-setup@v2.1.0'
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          version: 6.0.2
-      - name: 'Install dependencies'
-        run: 'pnpm i'
-      - name: 'Run build script'
-        run: 'pnpm build'
-      - name: 'Deploy'
-        uses: 'peaceiris/actions-gh-pages@v3'
+          node-version: 18
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build CSS
+        run: pnpm build
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: 'deploy'
-          publish_dir: './dist'
+          publish_branch: deploy
+          publish_dir: ./dist
