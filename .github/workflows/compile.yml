@@ -34,11 +34,11 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build CSS
-        run: pnpm build
+        run: pnpm run build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: deploy
-          publish_dir: ./dist
+          publish_branch: 'deploy'
+          publish_dir: './dist'
