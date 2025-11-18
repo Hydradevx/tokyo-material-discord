@@ -3,7 +3,7 @@
 	"scripts": {
 		"dev": "bd-scss dev",
 		"buildd": "bd-scss build && cp ./dist/Tokyo-Material.css ~/.config/vesktop/themes",
-		"build": "mkdir dist && bd-scss build"
+		"build": "bd-scss build"
 	},
 	"dependencies": {
 		"bd-scss": "^2.0.14"
